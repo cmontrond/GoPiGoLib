@@ -69,3 +69,19 @@ func SpinLeft(gopigo3 *g.Driver, speed int) {
 		fmt.Errorf("Error moving the robot backward: %+v", err)
 	}
 }
+
+func readEnconders(gopigo3 *g.Driver) (int64, int64) {
+	leftEncoder, err := gopigo3.GetMotorEncoder(g.MOTOR_LEFT)
+
+	if err != nil {
+		fmt.Errorf("Error reading left encoder: %+v", err)
+	}
+
+	rightEncoder, err := gopigo3.GetMotorEncoder(g.MOTOR_RIGHT)
+
+	if err != nil {
+		fmt.Errorf("Error reading right encoder: %+v", err)
+	}
+
+	return leftEncoder, rightEncoder
+}
