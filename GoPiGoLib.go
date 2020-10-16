@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	g "gobot.io/x/gobot/platforms/dexter/gopigo3"
+	"time"
 )
 
 func Stop(gopigo3 *g.Driver) {
@@ -68,6 +69,22 @@ func SpinLeft(gopigo3 *g.Driver, speed int) {
 	if err != nil {
 		fmt.Errorf("Error moving the robot backward: %+v", err)
 	}
+}
+
+func blinkLED(gopigo3 *g.Driver) {
+	err := gopigo3.SetLED(g.LED_EYE_RIGHT, 0x00, 0x00, 0xFF)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	time.Sleep(time.Second)
+
+	err = gopigo3.SetLED(g.LED_EYE_RIGHT, 0x00, 0x00, 0x00)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	time.Sleep(time.Second)
 }
 
 func ReadEnconders(gopigo3 *g.Driver) (int64, int64) {
