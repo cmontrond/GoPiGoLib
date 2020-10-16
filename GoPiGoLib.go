@@ -71,7 +71,7 @@ func SpinLeft(gopigo3 *g.Driver, speed int) {
 	}
 }
 
-func blinkLED(gopigo3 *g.Driver) {
+func BlinkLED(gopigo3 *g.Driver) {
 	err := gopigo3.SetLED(g.LED_EYE_RIGHT, 0x00, 0x00, 0xFF)
 	if err != nil {
 		fmt.Println(err)
